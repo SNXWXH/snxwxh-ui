@@ -17,10 +17,10 @@ export default meta;
 
 export const PrimaryColor = () => (
   <>
-    <h3 style={{ color: 'black' }}>PRIMARY</h3>
+    <h3 className='text-black font-bold py-3'>PRIMARY</h3>
     <div>
-      {PRIMARY.map((colors) => (
-        <ColorItem color={colors} />
+      {Object.entries(PRIMARY).map((color) => (
+        <ColorItem key={color[0]} colors={color} />
       ))}
     </div>
   </>
@@ -28,10 +28,10 @@ export const PrimaryColor = () => (
 
 export const NeutralColor = () => (
   <>
-    <h3 style={{ color: 'black' }}>NEUTRAL</h3>
+    <h3 className='text-black font-bold py-3'>NEUTRAL</h3>
     <div>
-      {NEUTRAL.map((colors) => (
-        <ColorItem color={colors} />
+      {Object.entries(NEUTRAL).map((color) => (
+        <ColorItem key={color[0]} colors={color} />
       ))}
     </div>
   </>
@@ -39,10 +39,10 @@ export const NeutralColor = () => (
 
 export const DangerColor = () => (
   <>
-    <h3 style={{ color: 'black' }}>DANGER</h3>
+    <h3 className='text-black font-bold py-3'>DANGER</h3>
     <div>
-      {DANGER.map((colors) => (
-        <ColorItem color={colors} />
+      {Object.entries(DANGER).map((color) => (
+        <ColorItem key={color[0]} colors={color} />
       ))}
     </div>
   </>
