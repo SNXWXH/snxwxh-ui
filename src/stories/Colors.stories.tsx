@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react-vite';
-import { DANGER, NEUTRAL, PRIMARY } from '../lib/foundations/ColorSet';
+
 import ColorItem from '../lib/foundations/ColorItem';
+import { DANGER, NEUTRAL, PRIMARY } from '../lib/foundations/color';
 
 const meta: Meta = {
   title: 'Design System/Color',
