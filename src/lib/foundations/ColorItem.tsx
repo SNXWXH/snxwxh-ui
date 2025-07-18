@@ -1,31 +1,19 @@
 interface ColorItemProps {
-  color: {
-    shade: number;
-    color: string;
-  };
+  colors: [string, string];
 }
 
-const ColorItem = ({ color }: ColorItemProps) => {
-  const textColor = color.shade > 500 ? 'white' : 'black';
+const ColorItem = ({ colors }: ColorItemProps) => {
+  const [shade, color] = colors;
+  const textColor = +shade > 500 ? 'white' : 'black';
+
   return (
-    <>
-      <li
-        style={{
-          background: color.color,
-          display: 'flex',
-          width: '240px',
-          height: '44px',
-          alignItems: 'center',
-          listStyleType: 'none',
-          justifyContent: 'space-between',
-          padding: '0 12px',
-          color: textColor,
-        }}
-      >
-        <span>{color.shade}</span>
-        <span>{color.color}</span>
-      </li>
-    </>
+    <li
+      className='flex w-60 h-10 items-center list-none justify-between px-3'
+      style={{ background: color, color: textColor }}
+    >
+      <span>{shade}</span>
+      <span>{color}</span>
+    </li>
   );
 };
 
