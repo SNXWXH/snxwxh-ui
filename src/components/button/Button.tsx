@@ -1,19 +1,19 @@
-import type { ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destrctive';
   size?: 'mini' | 'small' | 'regular' | 'large';
-  state?: 'default' | 'disabled';
+  isDisable?: boolean;
   children?: ReactNode;
 };
 
 export const Button = ({
   variant = 'primary',
   size = 'regular',
-  state = 'default',
+  isDisable = false,
   children,
   ...props
-}: ButtonProps) => {
+}: ComponentProps<'button'> & ButtonProps) => {
   const variantClass = {
     primary: 'bg-neutral-900 text-white',
     secondary: 'bg-neutral-100  text-black',
@@ -35,7 +35,7 @@ export const Button = ({
     disabled: 'opacity-50 cursor-not-allowed',
   };
 
-  const currentState = state === 'disabled' ? 'disabled' : 'default';
+  const state = isDisable ? 'disabled' : 'default';
 
   return (
     <>
@@ -44,9 +44,9 @@ export const Button = ({
         flex items-center justify-center transition-all duration-200 font-medium
         ${variantClass[variant]}
         ${sizeClass[size]}
-        ${stateClass[currentState]}
+        ${stateClass[state]}
       `}
-        disabled={state === 'disabled'}
+        disabled={isDisable}
         {...props}
       >
         {children}

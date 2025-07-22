@@ -42,7 +42,11 @@ export default function App() {
                         <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
                           {size}
                         </div>
-                        <Button variant={variant} size={size} state={state}>
+                        <Button
+                          variant={variant}
+                          size={size}
+                          isDisable={state === 'disabled'}
+                        >
                           Label
                         </Button>
                         <div className='text-xs text-gray-400 text-center'>
@@ -67,7 +71,7 @@ export default function App() {
                 key={variant}
                 className='flex flex-col items-center space-y-2'
               >
-                <Button variant={variant} size='regular' state='default'>
+                <Button variant={variant} size='regular' isDisable={false}>
                   {variant}
                 </Button>
                 <span className='text-xs text-gray-500 capitalize'>
@@ -85,7 +89,7 @@ export default function App() {
           <div className='flex flex-wrap items-end gap-6 justify-center'>
             {sizes.map((size) => (
               <div key={size} className='flex flex-col items-center space-y-2'>
-                <Button variant='primary' size={size} state='default'>
+                <Button variant='primary' size={size} isDisable={false}>
                   {size}
                 </Button>
                 <span className='text-xs text-gray-500 capitalize'>{size}</span>
@@ -101,7 +105,11 @@ export default function App() {
           <div className='flex gap-6 justify-center'>
             {states.map((state) => (
               <div key={state} className='flex flex-col items-center space-y-2'>
-                <Button variant='primary' size='regular' state={state}>
+                <Button
+                  variant='primary'
+                  size='regular'
+                  isDisable={state === 'disabled'}
+                >
                   {state}
                 </Button>
                 <span className='text-xs text-gray-500 capitalize'>
