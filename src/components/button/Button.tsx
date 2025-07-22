@@ -4,7 +4,6 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destrctive';
   size?: 'mini' | 'small' | 'regular' | 'large';
   state?: 'default' | 'disabled';
-
   children?: ReactNode;
 };
 
@@ -31,7 +30,8 @@ export const Button = ({
   };
 
   const stateClass = {
-    default: '',
+    default:
+      'hover:opacity-90 active:scale-95 focus:outline-none focus:ring-2 focus:ring-neutral-200 cursor-pointer',
     disabled: 'opacity-50 cursor-not-allowed',
   };
 
@@ -42,11 +42,6 @@ export const Button = ({
       <button
         className={`
         flex items-center justify-center transition-all duration-200 font-medium
-        ${
-          state === 'disabled'
-            ? ''
-            : 'hover:opacity-90 active:scale-95 focus:outline-none focus:ring-2 focus:ring-neutral-200 cursor-pointer'
-        }
         ${variantClass[variant]}
         ${sizeClass[size]}
         ${stateClass[currentState]}
