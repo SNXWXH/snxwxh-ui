@@ -1,81 +1,78 @@
-import { Button } from './components/button/Button';
-import './index.css';
+import { Input } from './components/input/Input';
 
 export default function App() {
-  const variants = [
-    'primary',
-    'secondary',
-    'outline',
-    'ghost',
-    'destrctive',
-  ] as const;
+  const states = ['default', 'disabled', 'error'] as const;
   const sizes = ['mini', 'small', 'regular', 'large'] as const;
-  const states = ['default', 'disabled'] as const;
 
   return (
     <div className='w-screen min-h-screen bg-gray-50 p-8'>
-      <div className='max-w-6xl mx-auto'>
-        <h1 className='text-3xl font-bold text-center mb-8 text-gray-800'>
-          Button Design System
+      <div className='max-w-4xl mx-auto'>
+        <h1 className='text-3xl font-bold text-center mb-8 text-gray-800 '>
+          Input Design System
         </h1>
         {/* 전체 스타일 */}
-        {variants.map((variant) => (
-          <div key={variant} className='mb-12'>
-            <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
-              {variant} Variant
-            </h2>
-            <div className='grid gap-8'>
-              {states.map((state) => (
-                <div
-                  key={state}
-                  className='bg-white p-6 rounded-lg shadow-sm border'
-                >
-                  <h3 className='text-lg font-medium mb-4 text-gray-600 capitalize'>
-                    {state} State
-                  </h3>
-                  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6'>
-                    {sizes.map((size) => (
-                      <div
-                        key={size}
-                        className='flex flex-col items-center space-y-3'
-                      >
-                        <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
-                          {size}
-                        </div>
-                        <Button
-                          variant={variant}
-                          size={size}
-                          isDisable={state === 'disabled'}
-                        >
-                          Label
-                        </Button>
-                        <div className='text-xs text-gray-400 text-center'>
-                          {variant} / {size} / {state}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          Empty
+        </h2>
+        <div className='mb-12'>
+          <div className='grid grid-cols-2 gap-6 bg-white p-8 rounded-lg shadow-sm border'>
+            {sizes.map((size) => (
+              <div key={size} className='flex flex-col items-center space-y-3'>
+                <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
+                  {size}
                 </div>
-              ))}
+                <Input size={size} state='default' />
+                <div className='text-xs text-gray-400 text-center'>
+                  {size} / default
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {states.map((state) => (
+          <div key={state} className='mb-12'>
+            <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+              {state} State
+            </h2>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
+              <div className='grid grid-cols-2 gap-6'>
+                {sizes.map((size) => (
+                  <div
+                    key={size}
+                    className='flex flex-col items-center space-y-3'
+                  >
+                    <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
+                      {size}
+                    </div>
+                    <Input
+                      size={size}
+                      state={state}
+                      placeholder={`${size} ${state}`}
+                    />
+                    <div className='text-xs text-gray-400 text-center'>
+                      {size} / {state}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))}
-        {/* variant 전체 */}
+        {/* state 전체 */}
         <div className='mt-16 bg-white p-8 rounded-lg shadow-sm border'>
           <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            한눈에 보기 - Regular Size, Default State
+            한눈에 보기 - Regular Size
           </h2>
           <div className='flex flex-wrap gap-4 justify-center'>
-            {variants.map((variant) => (
-              <div
-                key={variant}
-                className='flex flex-col items-center space-y-2'
-              >
-                <Button variant={variant} size='regular' isDisable={false}>
-                  {variant}
-                </Button>
+            {states.map((state) => (
+              <div key={state} className='flex flex-col items-center space-y-2'>
+                <Input
+                  size='regular'
+                  state={state}
+                  placeholder={`${state} input`}
+                />
                 <span className='text-xs text-gray-500 capitalize'>
-                  {variant}
+                  {state}
                 </span>
               </div>
             ))}
@@ -84,14 +81,16 @@ export default function App() {
         {/* 사이즈 비교 */}
         <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
           <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            사이즈 비교 - Primary Variant, Default State
+            사이즈 비교 - Default State
           </h2>
           <div className='flex flex-wrap items-end gap-6 justify-center'>
             {sizes.map((size) => (
               <div key={size} className='flex flex-col items-center space-y-2'>
-                <Button variant='primary' size={size} isDisable={false}>
-                  {size}
-                </Button>
+                <Input
+                  size={size}
+                  state='default'
+                  placeholder={`${size} input`}
+                />
                 <span className='text-xs text-gray-500 capitalize'>{size}</span>
               </div>
             ))}
@@ -100,18 +99,16 @@ export default function App() {
         {/* 상태 비교 */}
         <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
           <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            상태 비교 - Primary Variant, Regular Size
+            상태 비교 - Regular Size
           </h2>
-          <div className='flex gap-6 justify-center'>
+          <div className='flex flex-wrap items-end gap-6 justify-center'>
             {states.map((state) => (
               <div key={state} className='flex flex-col items-center space-y-2'>
-                <Button
-                  variant='primary'
+                <Input
                   size='regular'
-                  isDisable={state === 'disabled'}
-                >
-                  {state}
-                </Button>
+                  state={state}
+                  placeholder={`${state} input`}
+                />
                 <span className='text-xs text-gray-500 capitalize'>
                   {state}
                 </span>
