@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactNode } from 'react';
 
 type ButtonProps = {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destrctive';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
   size?: 'mini' | 'small' | 'regular' | 'large';
   isDisabled?: boolean;
   children?: ReactNode;
@@ -19,7 +19,7 @@ export const Button = ({
     secondary: 'bg-neutral-100  text-black',
     outline: 'bg-neutral-100 border border-neutral-200 shadow-md text-black',
     ghost: 'bg-transparent text-black hover:bg-neutral-100',
-    destrctive: 'bg-danger-600 text-white',
+    destructive: 'bg-danger-600 text-white',
   };
 
   const sizeClass = {

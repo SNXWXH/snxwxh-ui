@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'outline', 'ghost', 'destrctive'],
+      options: ['primary', 'secondary', 'outline', 'ghost', 'destructive'],
       description: '버튼의 스타일 변형',
     },
     size: {
@@ -118,7 +118,7 @@ export const Ghost: Story = {
 
 export const Destructive: Story = {
   args: {
-    variant: 'destrctive',
+    variant: 'destructive',
     size: 'regular',
     isDisabled: false,
     children: 'Destructive',
