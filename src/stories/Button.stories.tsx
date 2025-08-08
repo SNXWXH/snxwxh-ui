@@ -19,7 +19,7 @@ const meta = {
       options: ['mini', 'small', 'regular', 'large'],
       description: '버튼의 크기',
     },
-    isDisable: {
+    isDisabled: {
       control: { type: 'boolean' },
       description: '버튼 비활성화 여부',
     },
@@ -42,7 +42,7 @@ export const _Interactive: Story = {
   args: {
     variant: 'primary',
     size: 'regular',
-    isDisable: false,
+    isDisabled: false,
     children: 'Button',
   },
   parameters: {
@@ -60,7 +60,7 @@ export const Primary: Story = {
   args: {
     variant: 'primary',
     size: 'regular',
-    isDisable: false,
+    isDisabled: false,
     children: 'primary',
   },
   argTypes: {
@@ -75,7 +75,7 @@ export const Secondary: Story = {
   args: {
     variant: 'secondary',
     size: 'regular',
-    isDisable: false,
+    isDisabled: false,
     children: 'Secondary',
   },
   argTypes: {
@@ -90,7 +90,7 @@ export const Outline: Story = {
   args: {
     variant: 'outline',
     size: 'regular',
-    isDisable: false,
+    isDisabled: false,
     children: 'Outline',
   },
   argTypes: {
@@ -105,7 +105,7 @@ export const Ghost: Story = {
   args: {
     variant: 'ghost',
     size: 'regular',
-    isDisable: false,
+    isDisabled: false,
     children: 'Ghost',
   },
   argTypes: {
@@ -120,7 +120,7 @@ export const Destructive: Story = {
   args: {
     variant: 'destrctive',
     size: 'regular',
-    isDisable: false,
+    isDisabled: false,
     children: 'Destructive',
   },
   argTypes: {
