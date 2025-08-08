@@ -1,16 +1,16 @@
 import type { ComponentProps, ReactNode } from 'react';
 
 type ButtonProps = {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destrctive';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
   size?: 'mini' | 'small' | 'regular' | 'large';
-  isDisable?: boolean;
+  isDisabled?: boolean;
   children?: ReactNode;
 };
 
 export const Button = ({
   variant = 'primary',
   size = 'regular',
-  isDisable = false,
+  isDisabled = false,
   children,
   ...props
 }: ComponentProps<'button'> & ButtonProps) => {
@@ -19,7 +19,7 @@ export const Button = ({
     secondary: 'bg-neutral-100  text-black',
     outline: 'bg-neutral-100 border border-neutral-200 shadow-md text-black',
     ghost: 'bg-transparent text-black hover:bg-neutral-100',
-    destrctive: 'bg-danger-600 text-white',
+    destructive: 'bg-danger-600 text-white',
   };
 
   const sizeClass = {
@@ -35,7 +35,7 @@ export const Button = ({
     disabled: 'opacity-50 cursor-not-allowed',
   };
 
-  const state = isDisable ? 'disabled' : 'default';
+  const state = isDisabled ? 'disabled' : 'default';
 
   return (
     <>
@@ -46,7 +46,7 @@ export const Button = ({
         ${sizeClass[size]}
         ${stateClass[state]}
       `}
-        disabled={isDisable}
+        disabled={isDisabled}
         {...props}
       >
         {children}
