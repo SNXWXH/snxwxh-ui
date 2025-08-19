@@ -1,9 +1,14 @@
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, ReactElement, ReactNode } from 'react';
+import { cloneElement } from 'react';
+
+type IconElement = ReactElement<{ className?: string }>;
 
 type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
   size?: 'mini' | 'small' | 'regular' | 'large';
   isDisabled?: boolean;
+  iconPosition?: 'left' | 'right';
+  icon?: IconElement;
   children?: ReactNode;
 };
 
@@ -11,6 +16,8 @@ export const Button = ({
   variant = 'primary',
   size = 'regular',
   isDisabled = false,
+  iconPosition = 'left',
+  icon,
   children,
   ...props
 }: ComponentProps<'button'> & ButtonProps) => {
@@ -35,7 +42,21 @@ export const Button = ({
     disabled: 'opacity-50 cursor-not-allowed',
   };
 
+  const iconSizeClass = {
+    mini: 'w-3.5 h-3.5',
+    small: 'w-4 h-4',
+    regular: 'w-5 h-5',
+    large: 'w-6 h-6',
+  };
+
   const state = isDisabled ? 'disabled' : 'default';
+
+  const renderIcon = () => {
+    if (!icon) return null;
+    return cloneElement(icon, {
+      className: `${iconSizeClass[size]}`.trim(),
+    });
+  };
 
   return (
     <>
@@ -49,7 +70,21 @@ export const Button = ({
         disabled={isDisabled}
         {...props}
       >
-        {children}
+        {icon ? (
+          iconPosition === 'left' ? (
+            <div className='flex justify-center items-center gap-1.5'>
+              {renderIcon()}
+              {children}
+            </div>
+          ) : (
+            <div className='flex justify-center items-center gap-1.5'>
+              {children}
+              {renderIcon()}
+            </div>
+          )
+        ) : (
+          <>{children}</>
+        )}
       </button>
     </>
   );
