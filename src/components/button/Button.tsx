@@ -36,6 +36,13 @@ export const Button = ({
     large: 'h-11 px-5 py-2 text-lg rounded-lg',
   };
 
+  const iconOnlySizeClass = {
+    mini: 'h-6 w-6 p-2 rounded-sm',
+    small: 'h-8 w-8 p-3 rounded-lg',
+    regular: 'h-9 w-9 p-4 rounded-lg',
+    large: 'h-10 w-10 p-5 rounded-lg',
+  };
+
   const stateClass = {
     default:
       'hover:opacity-90 active:scale-95 focus:outline-none focus:ring-2 focus:ring-neutral-200 cursor-pointer',
@@ -62,11 +69,11 @@ export const Button = ({
     <>
       <button
         className={`
-        flex items-center justify-center transition-all duration-200 font-medium
-        ${variantClass[variant]}
-        ${sizeClass[size]}
-        ${stateClass[state]}
-      `}
+          flex items-center justify-center transition-all duration-200 font-medium
+          ${variantClass[variant]}
+          ${children ? sizeClass[size] : iconOnlySizeClass[size]}
+          ${stateClass[state]}
+        `}
         disabled={isDisabled}
         {...props}
       >
