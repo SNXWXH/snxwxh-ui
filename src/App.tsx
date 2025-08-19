@@ -62,71 +62,77 @@ export default function App() {
           </div>
         ))}
         {/* variant 전체 */}
-        <div className='mt-16 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+        <div className='mt-16'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
             한눈에 보기 - Regular Size, Default State
           </h2>
-          <div className='flex flex-wrap gap-4 justify-center'>
-            {variants.map((variant) => (
-              <div
-                key={variant}
-                className='flex flex-col items-center space-y-2'
-              >
-                <Button variant={variant} size='regular' isDisabled={false}>
-                  {variant}
-                </Button>
-                <span className='text-xs text-gray-500 capitalize'>
-                  {variant}
-                </span>
-              </div>
-            ))}
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex flex-wrap gap-4 justify-center'>
+              {variants.map((variant) => (
+                <div
+                  key={variant}
+                  className='flex flex-col items-center space-y-2'
+                >
+                  <Button variant={variant} size='regular' isDisabled={false}>
+                    {variant}
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {variant}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         {/* 사이즈 비교 */}
-        <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
             사이즈 비교 - Primary Variant, Default State
           </h2>
-          <div className='flex flex-wrap items-end gap-6 justify-center'>
-            {sizes.map((size) => (
-              <div key={size} className='flex flex-col items-center space-y-2'>
-                <Button variant='primary' size={size} isDisabled={false}>
-                  {size}
-                </Button>
-                <span className='text-xs text-gray-500 capitalize'>{size}</span>
-              </div>
-            ))}
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex flex-wrap items-end gap-6 justify-center'>
+              {sizes.map((size) => (
+                <div key={size} className='flex flex-col items-center space-y-2'>
+                  <Button variant='primary' size={size} isDisabled={false}>
+                    {size}
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>{size}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         {/* 상태 비교 */}
-        <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
             상태 비교 - Primary Variant, Regular Size
           </h2>
-          <div className='flex gap-6 justify-center'>
-            {states.map((state) => (
-              <div key={state} className='flex flex-col items-center space-y-2'>
-                <Button
-                  variant='primary'
-                  size='regular'
-                  isDisabled={state === 'disabled'}
-                >
-                  {state}
-                </Button>
-                <span className='text-xs text-gray-500 capitalize'>
-                  {state}
-                </span>
-              </div>
-            ))}
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex gap-6 justify-center'>
+              {states.map((state) => (
+                <div key={state} className='flex flex-col items-center space-y-2'>
+                  <Button
+                    variant='primary'
+                    size='regular'
+                    isDisabled={state === 'disabled'}
+                  >
+                    {state}
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {state}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         {/* 아이콘이 있는 버튼 */}
-        <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
             아이콘이 있는 버튼 - All Variants, Regular Size
           </h2>
           <div className='grid gap-8'>
-            <div className='bg-gray-50 p-6 rounded-lg'>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
               <h3 className='text-lg font-medium mb-4 text-gray-600'>
                 아이콘 왼쪽 정렬
               </h3>
@@ -151,7 +157,7 @@ export default function App() {
                 ))}
               </div>
             </div>
-            <div className='bg-gray-50 p-6 rounded-lg'>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
               <h3 className='text-lg font-medium mb-4 text-gray-600'>
                 아이콘 오른쪽 정렬
               </h3>
@@ -172,6 +178,52 @@ export default function App() {
                     <span className='text-xs text-gray-500 capitalize'>
                       {variant}
                     </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            아이콘만 있는 버튼
+          </h2>
+          <div className='grid gap-8'>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
+              <h3 className='text-lg font-medium mb-4 text-gray-600'>
+                All Variants - Regular Size
+              </h3>
+              <div className='flex flex-wrap gap-4 justify-center'>
+                {variants.map((variant) => (
+                  <div
+                    key={variant}
+                    className='flex flex-col items-center space-y-2'
+                  >
+                    <Button
+                      variant={variant}
+                      size='regular'
+                      icon={<Download />}
+                    />
+                    <span className='text-xs text-gray-500 capitalize'>
+                      {variant}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
+              <h3 className='text-lg font-medium mb-4 text-gray-600'>
+                All Sizes - Primary Variant
+              </h3>
+              <div className='flex flex-wrap items-end gap-6 justify-center'>
+                {sizes.map((size) => (
+                  <div key={size} className='flex flex-col items-center space-y-2'>
+                    <Button
+                      variant='primary'
+                      size={size}
+                      icon={<Download />}
+                    />
+                    <span className='text-xs text-gray-500 capitalize'>{size}</span>
                   </div>
                 ))}
               </div>
