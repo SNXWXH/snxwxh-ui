@@ -186,3 +186,23 @@ export const WithIcon: Story = {
     },
   },
 };
+
+export const IconOnly: Story = {
+  args: {
+    variant: 'primary',
+    size: 'regular',
+    isDisabled: false,
+    icon: <Download />,
+  },
+  argTypes: {
+    children: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
+    },
+    icon: {
+      description: 'Lucide 아이콘 모두 가능',
+    },
+  },
+};
