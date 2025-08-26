@@ -25,7 +25,7 @@ const meta = {
       description: '버튼 비활성화 여부',
     },
     icon: {
-      control: { type: 'select' },
+      control: false,
       description: 'Lucide 아이콘 컴포넌트',
     },
     iconPosition: {
