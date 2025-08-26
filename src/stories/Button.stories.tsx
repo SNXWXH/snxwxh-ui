@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '../components/button/Button';
+import { Download } from 'lucide-react';
 
 const meta = {
   title: 'Components/Button',
@@ -23,9 +24,22 @@ const meta = {
       control: { type: 'boolean' },
       description: '버튼 비활성화 여부',
     },
+    icon: {
+      control: false,
+      description: 'Lucide 아이콘 컴포넌트',
+    },
+    iconPosition: {
+      control: { type: 'select' },
+      options: ['left', 'right'],
+      description: '아이콘 위치',
+    },
     children: {
       control: { type: 'text' },
       description: '버튼 내부 텍스트',
+    },
+    isLoading: {
+      control: { type: 'boolean' },
+      description: '로딩 상태 여부',
     },
     onClick: {
       action: 'clicked',
@@ -68,6 +82,12 @@ export const Primary: Story = {
       control: false,
       description: '버튼의 스타일 변형 (Primary로 고정)',
     },
+    icon: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
+    },
   },
 };
 
@@ -82,6 +102,12 @@ export const Secondary: Story = {
     variant: {
       control: false,
       description: '버튼의 스타일 변형 (Secondary로 고정)',
+    },
+    icon: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
     },
   },
 };
@@ -98,6 +124,12 @@ export const Outline: Story = {
       control: false,
       description: '버튼의 스타일 변형 (Outline으로 고정)',
     },
+    icon: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
+    },
   },
 };
 
@@ -113,6 +145,12 @@ export const Ghost: Story = {
       control: false,
       description: '버튼의 스타일 변형 (Ghost로 고정)',
     },
+    icon: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
+    },
   },
 };
 
@@ -127,6 +165,69 @@ export const Destructive: Story = {
     variant: {
       control: false,
       description: '버튼의 스타일 변형 (Destructive로 고정)',
+    },
+    icon: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
+    },
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    variant: 'primary',
+    size: 'regular',
+    isDisabled: false,
+    icon: <Download />,
+    iconPosition: 'left',
+    children: '다운로드',
+  },
+  argTypes: {
+    icon: {
+      description: 'Lucide 아이콘 모두 가능',
+    },
+  },
+};
+
+export const IconOnly: Story = {
+  args: {
+    variant: 'primary',
+    size: 'regular',
+    isDisabled: false,
+    icon: <Download />,
+  },
+  argTypes: {
+    children: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
+    },
+    icon: {
+      description: 'Lucide 아이콘 모두 가능',
+    },
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    variant: 'primary',
+    size: 'regular',
+    isLoading: true,
+    children: 'Loading...',
+  },
+  argTypes: {
+    isLoading: {
+      control: false,
+      description: '로딩 상태 (true로 고정)',
+    },
+    icon: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
     },
   },
 };

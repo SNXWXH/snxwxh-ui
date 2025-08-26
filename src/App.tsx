@@ -1,145 +1,265 @@
-import { useState } from 'react';
-import { Radio } from './components/radio/Radio';
+import { Button } from './components/button/Button';
+import { Download, ChevronRight } from 'lucide-react';
+import './index.css';
 
 export default function App() {
-  const [radioStates, setRadioStates] = useState({
-    radio1: false,
-    radio2: true,
-    radio3: false,
-    radio4: false,
-    radio5: false,
-    radio6: true,
-  });
-
-  const handleRadioChange = (radioId: string) => {
-    setRadioStates((prev) => ({
-      ...prev,
-      [radioId]: !prev[radioId as keyof typeof prev],
-    }));
-  };
-
-  const states = ['default', 'disabled', 'error'] as const;
+  const variants = [
+    'primary',
+    'secondary',
+    'outline',
+    'ghost',
+    'destructive',
+  ] as const;
+  const sizes = ['mini', 'small', 'regular', 'large'] as const;
+  const states = ['default', 'disabled'] as const;
 
   return (
     <div className='w-screen min-h-screen bg-gray-50 p-8'>
-      <div className='max-w-4xl mx-auto'>
+      <div className='max-w-6xl mx-auto'>
         <h1 className='text-3xl font-bold text-center mb-8 text-gray-800'>
-          Radio Design System
+          Button Design System
         </h1>
-        {/* 기본 라디오 버튼들 */}
-        <div className='mb-12'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            기본 라디오 버튼 (개별)
+        {/* 전체 스타일 */}
+        {variants.map((variant) => (
+          <div key={variant} className='mb-12'>
+            <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+              {variant} Variant
+            </h2>
+            <div className='grid gap-8'>
+              {states.map((state) => (
+                <div
+                  key={state}
+                  className='bg-white p-6 rounded-lg shadow-sm border'
+                >
+                  <h3 className='text-lg font-medium mb-4 text-gray-600 capitalize'>
+                    {state} State
+                  </h3>
+                  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6'>
+                    {sizes.map((size) => (
+                      <div
+                        key={size}
+                        className='flex flex-col items-center space-y-3'
+                      >
+                        <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
+                          {size}
+                        </div>
+                        <Button
+                          variant={variant}
+                          size={size}
+                          isDisabled={state === 'disabled'}
+                        >
+                          Label
+                        </Button>
+                        <div className='text-xs text-gray-400 text-center'>
+                          {variant} / {size} / {state}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+        {/* variant 전체 */}
+        <div className='mt-16'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            한눈에 보기 - Regular Size, Default State
           </h2>
-          <div className='bg-white p-8 rounded-lg shadow-sm border'>
-            <div className='grid grid-cols-2 gap-6'>
-              <div className='flex flex-col items-center space-y-3'>
-                <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
-                  라벨 있음
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex flex-wrap gap-4 justify-center'>
+              {variants.map((variant) => (
+                <div
+                  key={variant}
+                  className='flex flex-col items-center space-y-2'
+                >
+                  <Button variant={variant} size='regular' isDisabled={false}>
+                    {variant}
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {variant}
+                  </span>
                 </div>
-                <Radio
-                  label='옵션 1'
-                  value='option1'
-                  checked={radioStates.radio1}
-                  onChange={() => handleRadioChange('radio1')}
-                />
-                <div className='text-xs text-gray-400 text-center'>
-                  개별 라디오 / 라벨 있음
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* 사이즈 비교 */}
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            사이즈 비교 - Primary Variant, Default State
+          </h2>
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex flex-wrap items-end gap-6 justify-center'>
+              {sizes.map((size) => (
+                <div
+                  key={size}
+                  className='flex flex-col items-center space-y-2'
+                >
+                  <Button variant='primary' size={size} isDisabled={false}>
+                    {size}
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {size}
+                  </span>
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* 상태 비교 */}
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            상태 비교 - Primary Variant, Regular Size
+          </h2>
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex gap-6 justify-center'>
+              {states.map((state) => (
+                <div
+                  key={state}
+                  className='flex flex-col items-center space-y-2'
+                >
+                  <Button
+                    variant='primary'
+                    size='regular'
+                    isDisabled={state === 'disabled'}
+                  >
+                    {state}
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {state}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* 아이콘이 있는 버튼 */}
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            아이콘이 있는 버튼 - All Variants, Regular Size
+          </h2>
+          <div className='grid gap-8'>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
+              <h3 className='text-lg font-medium mb-4 text-gray-600'>
+                아이콘 왼쪽 정렬
+              </h3>
+              <div className='flex flex-wrap gap-4 justify-center'>
+                {variants.map((variant) => (
+                  <div
+                    key={variant}
+                    className='flex flex-col items-center space-y-2'
+                  >
+                    <Button
+                      variant={variant}
+                      size='regular'
+                      icon={<Download />}
+                      iconPosition='left'
+                    >
+                      좋아요
+                    </Button>
+                    <span className='text-xs text-gray-500 capitalize'>
+                      {variant}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <div className='flex flex-col items-center space-y-3'>
-                <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
-                  라벨 없음
-                </div>
-                <Radio
-                  value='option2'
-                  checked={radioStates.radio2}
-                  onChange={() => handleRadioChange('radio2')}
-                />
-                <div className='text-xs text-gray-400 text-center'>
-                  개별 라디오 / 라벨 없음
-                </div>
+            </div>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
+              <h3 className='text-lg font-medium mb-4 text-gray-600'>
+                아이콘 오른쪽 정렬
+              </h3>
+              <div className='flex flex-wrap gap-4 justify-center'>
+                {variants.map((variant) => (
+                  <div
+                    key={variant}
+                    className='flex flex-col items-center space-y-2'
+                  >
+                    <Button
+                      variant={variant}
+                      size='regular'
+                      icon={<ChevronRight />}
+                      iconPosition='right'
+                    >
+                      계속하기
+                    </Button>
+                    <span className='text-xs text-gray-500 capitalize'>
+                      {variant}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        {/* 상태별 라디오 */}
-        {states.map((state) => (
-          <div key={state} className='mb-12'>
-            <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
-              {state} State
-            </h2>
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            아이콘만 있는 버튼
+          </h2>
+          <div className='grid gap-8'>
             <div className='bg-white p-6 rounded-lg shadow-sm border'>
-              <div className='grid grid-cols-2 gap-6'>
-                <div className='flex flex-col items-center space-y-3'>
-                  <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
-                    라벨 있음
+              <h3 className='text-lg font-medium mb-4 text-gray-600'>
+                All Variants - Regular Size
+              </h3>
+              <div className='flex flex-wrap gap-4 justify-center'>
+                {variants.map((variant) => (
+                  <div
+                    key={variant}
+                    className='flex flex-col items-center space-y-2'
+                  >
+                    <Button
+                      variant={variant}
+                      size='regular'
+                      icon={<Download />}
+                    />
+                    <span className='text-xs text-gray-500 capitalize'>
+                      {variant}
+                    </span>
                   </div>
-                  <Radio
-                    label={`${state} radio`}
-                    value={`${state}-with-label`}
-                    checked={false}
-                    isDisable={state === 'disabled'}
-                    isError={state === 'error'}
-                  />
-                  <div className='text-xs text-gray-400 text-center'>
-                    {state} / 라벨 있음
+                ))}
+              </div>
+            </div>
+            <div className='bg-white p-6 rounded-lg shadow-sm border'>
+              <h3 className='text-lg font-medium mb-4 text-gray-600'>
+                All Sizes - Primary Variant
+              </h3>
+              <div className='flex flex-wrap items-end gap-6 justify-center'>
+                {sizes.map((size) => (
+                  <div
+                    key={size}
+                    className='flex flex-col items-center space-y-2'
+                  >
+                    <Button variant='primary' size={size} icon={<Download />} />
+                    <span className='text-xs text-gray-500 capitalize'>
+                      {size}
+                    </span>
                   </div>
-                </div>
-                <div className='flex flex-col items-center space-y-3'>
-                  <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
-                    라벨 없음
-                  </div>
-                  <Radio
-                    value={`${state}-no-label`}
-                    checked={true}
-                    isDisable={state === 'disabled'}
-                    isError={state === 'error'}
-                  />
-                  <div className='text-xs text-gray-400 text-center'>
-                    {state} / 라벨 없음
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
-        ))}
-        {/* 라벨 없는 라디오 모음 */}
-        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-          라벨 없는 라디오 - 다양한 상태
-        </h2>
-        <div className='flex flex-wrap gap-8 justify-center bg-white  p-6 rounded-lg shadow-sm border'>
-          <div className='flex flex-col items-center space-y-2'>
-            <Radio value='no-label-default' checked={false} />
-            <span className='text-xs text-gray-500'>default</span>
-          </div>
-          <div className='flex flex-col items-center space-y-2'>
-            <Radio value='no-label-checked' checked={true} />
-            <span className='text-xs text-gray-500'>checked</span>
-          </div>
-          <div className='flex flex-col items-center space-y-2'>
-            <Radio value='no-label-disabled' checked={false} isDisable={true} />
-            <span className='text-xs text-gray-500'>disabled</span>
-          </div>
-          <div className='flex flex-col items-center space-y-2'>
-            <Radio
-              value='no-label-disabled-checked'
-              checked={true}
-              isDisable={true}
-            />
-            <span className='text-xs text-gray-500'>disabled + checked</span>
-          </div>
-          <div className='flex flex-col items-center space-y-2'>
-            <Radio value='no-label-error' checked={false} isError={true} />
-            <span className='text-xs text-gray-500'>error</span>
-          </div>
-          <div className='flex flex-col items-center space-y-2'>
-            <Radio
-              value='no-label-error-checked'
-              checked={true}
-              isError={true}
-            />
-            <span className='text-xs text-gray-500'>error + checked</span>
+        </div>
+        {/* 로딩 버튼 */}
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            로딩 버튼 - All Sizes
+          </h2>
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex flex-wrap items-end gap-6 justify-center'>
+              {sizes.map((size) => (
+                <div
+                  key={size}
+                  className='flex flex-col items-center space-y-2'
+                >
+                  <Button variant='primary' size={size} isLoading={true}>
+                    Label
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {size}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
