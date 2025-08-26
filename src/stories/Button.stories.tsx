@@ -37,6 +37,10 @@ const meta = {
       control: { type: 'text' },
       description: '버튼 내부 텍스트',
     },
+    isLoading: {
+      control: { type: 'boolean' },
+      description: '로딩 상태 여부',
+    },
     onClick: {
       action: 'clicked',
       description: '클릭 이벤트',
@@ -203,6 +207,27 @@ export const IconOnly: Story = {
     },
     icon: {
       description: 'Lucide 아이콘 모두 가능',
+    },
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    variant: 'primary',
+    size: 'regular',
+    isLoading: true,
+    children: 'Loading...',
+  },
+  argTypes: {
+    isLoading: {
+      control: false,
+      description: '로딩 상태 (true로 고정)',
+    },
+    icon: {
+      control: false,
+    },
+    iconPosition: {
+      control: false,
     },
   },
 };
