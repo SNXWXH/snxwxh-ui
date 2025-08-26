@@ -59,7 +59,7 @@ export const Button = ({
     large: 'w-6 h-6',
   };
 
-  const state = isDisabled ? 'disabled' : 'default';
+  const state = isDisabled || isLoading ? 'disabled' : 'default';
   if (isLoading)
     icon = (
       <LoaderCircle
@@ -75,36 +75,35 @@ export const Button = ({
   };
 
   return (
-    <>
-      <button
-        className={`
+    <button
+      className={`
           flex items-center justify-center transition-all duration-200 font-medium
           ${
             isLoading
-              ? `${variantClass.ghost} ${stateClass.disabled} focus:outline-none focus:ring-2 focus:ring-neutral-200`
-              : `${variantClass[variant]} ${stateClass[state]}`
+              ? `${variantClass.ghost} focus:outline-none focus:ring-2 focus:ring-neutral-200`
+              : `${variantClass[variant]}`
           }
+          ${stateClass[state]}
           ${children ? sizeClass[size] : iconOnlySizeClass[size]}
         `}
-        disabled={isDisabled}
-        {...props}
-      >
-        {icon ? (
-          iconPosition === 'left' ? (
-            <div className='flex justify-center items-center gap-1.5'>
-              {renderIcon()}
-              {children}
-            </div>
-          ) : (
-            <div className='flex justify-center items-center gap-1.5'>
-              {children}
-              {renderIcon()}
-            </div>
-          )
+      disabled={isDisabled || isLoading}
+      {...props}
+    >
+      {icon ? (
+        iconPosition === 'left' ? (
+          <div className='flex justify-center items-center gap-1.5'>
+            {renderIcon()}
+            {children}
+          </div>
         ) : (
-          <>{children}</>
-        )}
-      </button>
-    </>
+          <div className='flex justify-center items-center gap-1.5'>
+            {children}
+            {renderIcon()}
+          </div>
+        )
+      ) : (
+        <>{children}</>
+      )}
+    </button>
   );
 };
