@@ -1,3 +1,4 @@
+import { LoaderCircle } from 'lucide-react';
 import type { ComponentProps, ReactElement, ReactNode } from 'react';
 import { cloneElement } from 'react';
 
@@ -9,6 +10,7 @@ type ButtonProps = {
   isDisabled?: boolean;
   iconPosition?: 'left' | 'right';
   icon?: IconElement;
+  isLoading?: boolean;
   children?: ReactNode;
 };
 
@@ -18,6 +20,7 @@ export const Button = ({
   isDisabled = false,
   iconPosition = 'left',
   icon,
+  isLoading = false,
   children,
   ...props
 }: ComponentProps<'button'> & ButtonProps) => {
@@ -57,11 +60,17 @@ export const Button = ({
   };
 
   const state = isDisabled ? 'disabled' : 'default';
+  if (isLoading)
+    icon = (
+      <LoaderCircle
+        className={`${iconSizeClass[size]} animate-[spin_2s_linear_infinite]`}
+      />
+    );
 
   const renderIcon = () => {
     if (!icon) return null;
     return cloneElement(icon, {
-      className: `${iconSizeClass[size]}`.trim(),
+      className: `${icon.props.className || ''} ${iconSizeClass[size]}`.trim(),
     });
   };
 
@@ -70,9 +79,12 @@ export const Button = ({
       <button
         className={`
           flex items-center justify-center transition-all duration-200 font-medium
-          ${variantClass[variant]}
+          ${
+            isLoading
+              ? `${variantClass.ghost} ${stateClass.disabled} focus:outline-none focus:ring-2 focus:ring-neutral-200`
+              : `${variantClass[variant]} ${stateClass[state]}`
+          }
           ${children ? sizeClass[size] : iconOnlySizeClass[size]}
-          ${stateClass[state]}
         `}
         disabled={isDisabled}
         {...props}
