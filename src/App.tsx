@@ -92,11 +92,16 @@ export default function App() {
           <div className='bg-white p-6 rounded-lg shadow-sm border'>
             <div className='flex flex-wrap items-end gap-6 justify-center'>
               {sizes.map((size) => (
-                <div key={size} className='flex flex-col items-center space-y-2'>
+                <div
+                  key={size}
+                  className='flex flex-col items-center space-y-2'
+                >
                   <Button variant='primary' size={size} isDisabled={false}>
                     {size}
                   </Button>
-                  <span className='text-xs text-gray-500 capitalize'>{size}</span>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {size}
+                  </span>
                 </div>
               ))}
             </div>
@@ -110,7 +115,10 @@ export default function App() {
           <div className='bg-white p-6 rounded-lg shadow-sm border'>
             <div className='flex gap-6 justify-center'>
               {states.map((state) => (
-                <div key={state} className='flex flex-col items-center space-y-2'>
+                <div
+                  key={state}
+                  className='flex flex-col items-center space-y-2'
+                >
                   <Button
                     variant='primary'
                     size='regular'
@@ -217,16 +225,40 @@ export default function App() {
               </h3>
               <div className='flex flex-wrap items-end gap-6 justify-center'>
                 {sizes.map((size) => (
-                  <div key={size} className='flex flex-col items-center space-y-2'>
-                    <Button
-                      variant='primary'
-                      size={size}
-                      icon={<Download />}
-                    />
-                    <span className='text-xs text-gray-500 capitalize'>{size}</span>
+                  <div
+                    key={size}
+                    className='flex flex-col items-center space-y-2'
+                  >
+                    <Button variant='primary' size={size} icon={<Download />} />
+                    <span className='text-xs text-gray-500 capitalize'>
+                      {size}
+                    </span>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+        {/* 로딩 버튼 */}
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold mb-6 text-gray-700 capitalize border-b pb-2'>
+            로딩 버튼 - All Sizes
+          </h2>
+          <div className='bg-white p-6 rounded-lg shadow-sm border'>
+            <div className='flex flex-wrap items-end gap-6 justify-center'>
+              {sizes.map((size) => (
+                <div
+                  key={size}
+                  className='flex flex-col items-center space-y-2'
+                >
+                  <Button variant='primary' size={size} isLoading={true}>
+                    Label
+                  </Button>
+                  <span className='text-xs text-gray-500 capitalize'>
+                    {size}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
