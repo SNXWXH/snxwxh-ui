@@ -66,10 +66,10 @@ export default function App() {
           </div>
         ))}
         {/* state 전체 */}
-        <div className='mt-16 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            한눈에 보기 - Regular Size
-          </h2>
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          한눈에 보기 - Regular Size
+        </h2>
+        <div className='my-8 bg-white p-8 rounded-lg shadow-sm border'>
           <div className='flex flex-wrap gap-4 justify-center'>
             {states.map((state) => (
               <div key={state} className='flex flex-col items-center space-y-2'>
@@ -86,10 +86,10 @@ export default function App() {
           </div>
         </div>
         {/* 사이즈 비교 */}
-        <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            사이즈 비교 - Default State
-          </h2>
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          사이즈 비교 - Default State
+        </h2>
+        <div className='my-8 bg-white p-8 rounded-lg shadow-sm border'>
           <div className='flex flex-wrap items-end gap-6 justify-center'>
             {sizes.map((size) => (
               <div key={size} className='flex flex-col items-center space-y-2'>
@@ -105,10 +105,10 @@ export default function App() {
           </div>
         </div>
         {/* 상태 비교 */}
-        <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            상태 비교 - Regular Size
-          </h2>
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          상태 비교 - Regular Size
+        </h2>
+        <div className='my-8 bg-white p-8 rounded-lg shadow-sm border'>
           <div className='flex flex-wrap items-end gap-6 justify-center'>
             {states.map((state) => (
               <div key={state} className='flex flex-col items-center space-y-2'>
@@ -125,20 +125,10 @@ export default function App() {
           </div>
         </div>
         {/* 파일 입력 - 기본 */}
-        <div className='mt-16 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            File Input - 파일 업로드 (Label 방식)
-          </h2>
-          
-          <div className='mb-8 bg-blue-50 p-4 rounded-lg border border-blue-200'>
-            <h3 className='text-sm font-semibold text-blue-900 mb-2'>✨ 파일 입력 주요 기능</h3>
-            <ul className='text-xs text-blue-800 space-y-1'>
-              <li>• 파일 선택 시 실제 파일명 표시</li>
-              <li>• 긴 파일명 자동 말줄임표(...) 처리</li>
-              <li>• Hover 시 전체 파일명 툴팁</li>
-            </ul>
-          </div>
-
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          File Input - 파일 업로드 (Label 방식)
+        </h2>
+        <div className='my-8 bg-white p-8 rounded-lg shadow-sm border'>
           <div className='flex flex-wrap items-end gap-6 justify-center'>
             {sizes.map((size) => (
               <div key={size} className='flex flex-col items-center space-y-2'>
@@ -154,12 +144,11 @@ export default function App() {
             ))}
           </div>
         </div>
-
         {/* 파일 입력 - 커스텀 라벨 */}
-        <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            File Input - 커스텀 라벨 & Accept 타입
-          </h2>
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          File Input - 커스텀 라벨 & Accept 타입
+        </h2>
+        <div className='my-8 bg-white p-8 rounded-lg shadow-sm border'>
           <div className='grid grid-cols-2 gap-6'>
             <div className='flex flex-col items-center space-y-3'>
               <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
@@ -177,7 +166,6 @@ export default function App() {
                 accept: image/*
               </div>
             </div>
-            
             <div className='flex flex-col items-center space-y-3'>
               <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
                 문서 파일
@@ -194,7 +182,6 @@ export default function App() {
                 accept: .pdf,.doc,.docx
               </div>
             </div>
-            
             <div className='flex flex-col items-center space-y-3'>
               <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
                 모든 파일
@@ -210,7 +197,6 @@ export default function App() {
                 모든 파일 형식
               </div>
             </div>
-
             <div className='flex flex-col items-center space-y-3'>
               <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
                 긴 파일명 테스트
@@ -228,13 +214,12 @@ export default function App() {
             </div>
           </div>
         </div>
-
         {/* 파일 입력 - 상태별 */}
-        <div className='mt-8 bg-white p-8 rounded-lg shadow-sm border'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
-            File Input - 상태별
-          </h2>
-          <div className='grid grid-cols-3 gap-6'>
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          File Input - 상태별
+        </h2>
+        <div className='my-8 bg-white p-8 rounded-lg shadow-sm border'>
+          <div className='flex flex-wrap items-end gap-6 justify-center'>
             <div className='flex flex-col items-center space-y-3'>
               <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
                 기본 상태
@@ -247,11 +232,8 @@ export default function App() {
                 isDisabled={false}
                 isError={false}
               />
-              <div className='text-xs text-gray-400 text-center'>
-                default
-              </div>
+              <div className='text-xs text-gray-400 text-center'>default</div>
             </div>
-            
             <div className='flex flex-col items-center space-y-3'>
               <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
                 에러 상태
@@ -264,11 +246,8 @@ export default function App() {
                 isDisabled={false}
                 isError={true}
               />
-              <div className='text-xs text-gray-400 text-center'>
-                error
-              </div>
+              <div className='text-xs text-gray-400 text-center'>error</div>
             </div>
-            
             <div className='flex flex-col items-center space-y-3'>
               <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
                 비활성화
@@ -281,8 +260,48 @@ export default function App() {
                 isDisabled={true}
                 isError={false}
               />
+              <div className='text-xs text-gray-400 text-center'>disabled</div>
+            </div>
+          </div>
+        </div>
+        {/* 파일 입력 - 단일/다중 선택 */}
+        <h2 className='text-2xl font-semibold mb-6 text-gray-700 border-b pb-2'>
+          File Input - 단일/다중 선택
+        </h2>
+        <div className='my-8 bg-white p-8 rounded-lg shadow-sm border'>
+          <div className='grid grid-cols-2 gap-6'>
+            <div className='flex flex-col items-center space-y-3'>
+              <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
+                단일 파일 선택
+              </div>
+              <Input
+                size='regular'
+                type='file'
+                accept='image/*,.pdf,.doc,.docx'
+                fileInputLabel='파일 선택'
+                multiple={false}
+                isDisabled={false}
+                isError={false}
+              />
               <div className='text-xs text-gray-400 text-center'>
-                disabled
+                multiple: false
+              </div>
+            </div>
+            <div className='flex flex-col items-center space-y-3'>
+              <div className='text-sm font-medium text-gray-500 uppercase tracking-wide'>
+                다중 파일 선택
+              </div>
+              <Input
+                size='regular'
+                type='file'
+                accept='image/*,.pdf,.doc,.docx'
+                fileInputLabel='여러 파일 선택'
+                multiple={true}
+                isDisabled={false}
+                isError={false}
+              />
+              <div className='text-xs text-gray-400 text-center'>
+                multiple: true
               </div>
             </div>
           </div>
