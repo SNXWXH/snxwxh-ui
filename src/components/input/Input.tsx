@@ -8,6 +8,7 @@ type InputProps = {
   placeholder?: string;
   accept?: string;
   fileInputLabel?: string;
+  multiple?: boolean;
 };
 
 export const Input = ({
@@ -18,6 +19,7 @@ export const Input = ({
   type,
   accept,
   fileInputLabel = '파일 선택',
+  multiple = false,
   ...props
 }: Omit<ComponentProps<'input'>, 'size'> & InputProps) => {
   const sizeClass = {
@@ -45,10 +47,24 @@ export const Input = ({
   const [selectedFileName, setSelectedFileName] = useState<string>('');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    setSelectedFileName(file ? file.name : '');
+    const files = e.target.files;
 
-    if (props.onChange) props.onChange(e);
+    if (!files) {
+      setSelectedFileName('');
+      props.onChange?.(e);
+      return;
+    }
+
+    if (multiple) {
+      const fileNames = Array.from(files).map((file) => file.name);
+      const displayName =
+        fileNames.length > 1
+          ? `${fileNames.length}개 파일 선택됨`
+          : fileNames[0] || '';
+      setSelectedFileName(displayName);
+    } else setSelectedFileName(files[0]?.name || '');
+
+    props.onChange?.(e);
   };
 
   return (
@@ -60,6 +76,7 @@ export const Input = ({
             id={inputId}
             type='file'
             accept={accept}
+            multiple={multiple}
             className='hidden'
             disabled={isDisabled}
             onChange={handleFileChange}
