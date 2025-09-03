@@ -39,6 +39,10 @@ const meta = {
       control: { type: 'text' },
       description: '파일 입력 버튼에 표시될 라벨 텍스트',
     },
+    multiple: {
+      control: { type: 'boolean' },
+      description: '파일 다중 선택 여부',
+    },
     onChange: {
       action: 'changed',
       description: '값 변경 이벤트',
@@ -133,6 +137,7 @@ export const FileUpload: Story = {
     isError: false,
     accept: 'image/*,.pdf,.doc,.docx',
     fileInputLabel: '파일 선택',
+    multiple: false,
   },
   argTypes: {
     type: {
