@@ -43,6 +43,10 @@ const meta = {
       control: { type: 'boolean' },
       description: '파일 다중 선택 여부',
     },
+    id: {
+      control: { type: 'text' },
+      description: '입력 필드의 id 속성',
+    },
     onChange: {
       action: 'changed',
       description: '값 변경 이벤트',

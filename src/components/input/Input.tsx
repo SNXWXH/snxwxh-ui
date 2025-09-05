@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 type InputProps = {
   size?: 'mini' | 'small' | 'regular' | 'large';
@@ -9,6 +9,7 @@ type InputProps = {
   accept?: string;
   fileInputLabel?: string;
   multiple?: boolean;
+  id?: string;
 };
 
 export const Input = ({
@@ -20,8 +21,11 @@ export const Input = ({
   accept,
   fileInputLabel = '파일 선택',
   multiple = false,
+  id,
   ...props
 }: Omit<ComponentProps<'input'>, 'size'> & InputProps) => {
+  const [selectedFileName, setSelectedFileName] = useState<string>('');
+
   const sizeClass = {
     mini: 'h-6 px-1.5 py-1 text-xs rounded-sm',
     small: 'h-8 px-2 py-1.5 text-sm rounded-lg',
@@ -42,9 +46,9 @@ export const Input = ({
   else state = 'default';
 
   const isFileType = type === 'file';
-  const inputId =
-    props.id || `input-${Math.random().toString(36).substring(2, 11)}`;
-  const [selectedFileName, setSelectedFileName] = useState<string>('');
+
+  const generatedId = useId();
+  const inputId = id || generatedId;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
