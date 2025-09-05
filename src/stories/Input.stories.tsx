@@ -28,8 +28,24 @@ const meta = {
     },
     type: {
       control: { type: 'select' },
-      options: ['text', 'email', 'password', 'number', 'tel', 'url'],
+      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'file'],
       description: '입력 필드의 타입',
+    },
+    accept: {
+      control: { type: 'text' },
+      description: '파일 입력 시 허용할 파일 타입 (예: image/*, .pdf)',
+    },
+    fileInputLabel: {
+      control: { type: 'text' },
+      description: '파일 입력 버튼에 표시될 라벨 텍스트',
+    },
+    multiple: {
+      control: { type: 'boolean' },
+      description: '파일 다중 선택 여부',
+    },
+    id: {
+      control: { type: 'text' },
+      description: '입력 필드의 id 속성',
     },
     onChange: {
       action: 'changed',
@@ -113,6 +129,28 @@ export const Error: Story = {
     isError: {
       control: false,
       description: '입력 필드 에러 상태 여부 (true로 고정)',
+    },
+  },
+};
+
+export const FileUpload: Story = {
+  args: {
+    type: 'file',
+    size: 'regular',
+    isDisabled: false,
+    isError: false,
+    accept: 'image/*,.pdf,.doc,.docx',
+    fileInputLabel: '파일 선택',
+    multiple: false,
+  },
+  argTypes: {
+    type: {
+      control: false,
+      description: '파일 입력 타입 (file로 고정)',
+    },
+    placeholder: {
+      control: false,
+      description: '파일 입력에서는 사용되지 않음',
     },
   },
 };

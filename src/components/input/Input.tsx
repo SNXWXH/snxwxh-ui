@@ -1,10 +1,15 @@
 import type { ComponentProps } from 'react';
+import { useId, useState } from 'react';
 
 type InputProps = {
   size?: 'mini' | 'small' | 'regular' | 'large';
   isDisabled: boolean;
   isError: boolean;
   placeholder?: string;
+  accept?: string;
+  fileInputLabel?: string;
+  multiple?: boolean;
+  id?: string;
 };
 
 export const Input = ({
@@ -12,8 +17,15 @@ export const Input = ({
   isDisabled = false,
   isError = false,
   placeholder = '',
+  type,
+  accept,
+  fileInputLabel = '파일 선택',
+  multiple = false,
+  id,
   ...props
 }: Omit<ComponentProps<'input'>, 'size'> & InputProps) => {
+  const [selectedFileName, setSelectedFileName] = useState<string>('');
+
   const sizeClass = {
     mini: 'h-6 px-1.5 py-1 text-xs rounded-sm',
     small: 'h-8 px-2 py-1.5 text-sm rounded-lg',
@@ -33,18 +45,78 @@ export const Input = ({
   else if (isError) state = 'error';
   else state = 'default';
 
+  const isFileType = type === 'file';
+
+  const generatedId = useId();
+  const inputId = id || generatedId;
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+
+    if (!files) {
+      setSelectedFileName('');
+      props.onChange?.(e);
+      return;
+    }
+
+    if (multiple) {
+      const fileNames = Array.from(files).map((file) => file.name);
+      const displayName =
+        fileNames.length > 1
+          ? `${fileNames.length}개 파일 선택됨`
+          : fileNames[0] || '';
+      setSelectedFileName(displayName);
+    } else setSelectedFileName(files[0]?.name || '');
+
+    props.onChange?.(e);
+  };
+
   return (
     <>
-      <input
-        className={`
-          w-80 bg-white border text-neutral-900 placeholder:text-neutral-500 placeholder:font-normal focus:ring-2 focus:ring-inset focus:outline-none
-          ${sizeClass[size]}
-          ${stateClass[state]}
-        `}
-        placeholder={placeholder}
-        disabled={isDisabled}
-        {...props}
-      />
+      {isFileType ? (
+        <>
+          <input
+            {...props}
+            id={inputId}
+            type='file'
+            accept={accept}
+            multiple={multiple}
+            className='hidden'
+            disabled={isDisabled}
+            onChange={handleFileChange}
+          />
+          <label
+            htmlFor={inputId}
+            className={`
+              flex items-center w-80 bg-white border text-neutral-900 cursor-pointer transition-colors
+              ${sizeClass[size]}
+              ${stateClass[state]}
+              ${isDisabled ? 'cursor-not-allowed' : 'hover:bg-neutral-50'}
+            `}
+          >
+            <span
+              className={`truncate ${
+                selectedFileName ? 'text-neutral-700' : 'text-neutral-500'
+              }`}
+              title={selectedFileName || fileInputLabel}
+            >
+              {selectedFileName || fileInputLabel}
+            </span>
+          </label>
+        </>
+      ) : (
+        <input
+          type={type}
+          className={`
+            flex items-center w-80 bg-white border text-neutral-900 placeholder:text-neutral-500 placeholder:font-normal focus:ring-2 focus:ring-inset focus:outline-none 
+            ${sizeClass[size]}
+            ${stateClass[state]}
+          `}
+          placeholder={placeholder}
+          disabled={isDisabled}
+          {...props}
+        />
+      )}
     </>
   );
 };
